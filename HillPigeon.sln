@@ -13,13 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8B6F31CA-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Core.Test", "test\HillPigeon.Core.Test\HillPigeon.Core.Test.csproj", "{27114C9C-DB30-462B-BC87-BDB3F6D8D8BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillPigeon.Orleans", "src\HillPigeon.Orleans\HillPigeon.Orleans.csproj", "{5A7F3DC8-E49B-442B-9911-89B348C1B0B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans", "src\HillPigeon.Orleans\HillPigeon.Orleans.csproj", "{5A7F3DC8-E49B-442B-9911-89B348C1B0B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillPigeon.AspNetCore.Orleans", "src\HillPigeon.AspNetCore.Orleans\HillPigeon.AspNetCore.Orleans.csproj", "{6A7D9D1E-E5AC-46DF-B175-95F0E546FE05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans.AspNetCore", "src\HillPigeon.Orleans.AspNetCore\HillPigeon.Orleans.AspNetCore.csproj", "{6A7D9D1E-E5AC-46DF-B175-95F0E546FE05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{08723A56-D98B-4854-A25D-31D628366946}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Ocelot.Orleans", "src\HillPigeon.Ocelot.Orleans\HillPigeon.Ocelot.Orleans.csproj", "{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans.Ocelot.Core", "src\HillPigeon.Orleans.Ocelot.Core\HillPigeon.Orleans.Ocelot.Core.csproj", "{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

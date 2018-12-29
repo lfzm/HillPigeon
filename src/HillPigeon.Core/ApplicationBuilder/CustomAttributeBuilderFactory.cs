@@ -40,15 +40,11 @@ namespace HillPigeon.ApplicationBuilder
             else if (attribute is HttpDeleteAttribute || attribute is HttpGetAttribute || attribute is HttpHeadAttribute || attribute is HttpPatchAttribute || attribute is HttpOptionsAttribute || attribute is HttpPostAttribute || attribute is HttpPutAttribute)
             {
                 var httpMethod = (HttpMethodAttribute)attribute;
-                var _acceptVerbs = new AcceptVerbsAttribute(httpMethod.HttpMethods.ToArray())
+                if (!string.IsNullOrEmpty(httpMethod.Template))
                 {
-                    Name = httpMethod.Name,
-                    Order = httpMethod.Order,
-                    Route = httpMethod.Template
-                };
-                constructorInfo = _acceptVerbs.GetType().GetConstructor(new Type[] { typeof(string[]) });
-                values = new object[] { _acceptVerbs.HttpMethods.ToArray() };
-                return Build(_acceptVerbs, constructorInfo, values);
+                    constructorInfo = attribute.GetType().GetConstructor(new Type[] { typeof(string) });
+                    values = new object[] { httpMethod.Template };
+                }
             }
             else if (attribute is FromBodyAttribute || attribute is FromFormAttribute || attribute is FromHeaderAttribute || attribute is FromQueryAttribute || attribute is FromRouteAttribute || attribute is FromServicesAttribute)
             {
@@ -56,7 +52,7 @@ namespace HillPigeon.ApplicationBuilder
             }
             else
             {
-                throw new NotSupportedException(nameof(attribute));
+                return null;
             }
             return Build(attribute, constructorInfo, values);
         }

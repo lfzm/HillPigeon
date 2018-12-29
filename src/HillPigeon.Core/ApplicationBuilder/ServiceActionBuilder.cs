@@ -41,7 +41,8 @@ namespace HillPigeon.ApplicationBuilder
             foreach (var attr in context.Attributes)
             {
                 var customAttributeBuilder = CustomAttributeBuilderFactory.Build(attr);
-                paramBuilder.SetCustomAttribute(customAttributeBuilder);
+                if (customAttributeBuilder != null)
+                    paramBuilder.SetCustomAttribute(customAttributeBuilder);
             }
             return builder;
         }
@@ -50,7 +51,8 @@ namespace HillPigeon.ApplicationBuilder
             foreach (var attribute in attributes)
             {
                 var customAttributeBuilder = CustomAttributeBuilderFactory.Build(attribute);
-                builder.SetCustomAttribute(customAttributeBuilder);
+                if (customAttributeBuilder != null)
+                    builder.SetCustomAttribute(customAttributeBuilder);
             }
             return builder;
         }

@@ -72,7 +72,8 @@ namespace HillPigeon.ApplicationBuilder
             foreach (var attribute in attributes)
             {
                 var customAttributeBuilder = CustomAttributeBuilderFactory.Build(attribute);
-                builder.SetCustomAttribute(customAttributeBuilder);
+                if (customAttributeBuilder != null)
+                    builder.SetCustomAttribute(customAttributeBuilder);
             }
         }
         public void BuildConstructor(TypeBuilder builder, Action<ILGenerator> action)
