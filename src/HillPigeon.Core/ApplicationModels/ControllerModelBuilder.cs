@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +18,7 @@ namespace HillPigeon.ApplicationModels
         public ControllerModel Build(TypeInfo typeInfo, string moduleName)
         {
             ControllerModel controller = new ControllerModel(moduleName, typeInfo);
-            this.WithAuthorizeAttribute(controller, typeInfo);
-            this.WithRouteAttribute(controller, typeInfo);
+            this.WithAttributes(controller, typeInfo);
             this.WithActionModel(controller, typeInfo);
             this.WithConvention(controller);
             return controller;
@@ -36,20 +34,12 @@ namespace HillPigeon.ApplicationModels
                 controller.Actions.Add(actionModel);
             }
         }
-        private void WithAuthorizeAttribute(ControllerModel controller, TypeInfo typeInfo)
+        private void WithAttributes(ControllerModel controller, TypeInfo typeInfo)
         {
-            var auths = typeInfo.GetCustomAttributes<AuthorizeAttribute>(inherit: true);
-            foreach (var auth in auths)
+            var attributes = typeInfo.GetCustomAttributes(inherit: true);
+            foreach (var attribute in attributes)
             {
-                controller.Authorizes.Add(auth);
-            }
-        }
-        private void WithRouteAttribute(ControllerModel controller, TypeInfo typeInfo)
-        {
-            var routes = typeInfo.GetCustomAttributes<RouteAttribute>(inherit: true);
-            foreach (var route in routes)
-            {
-                controller.Routes.Add(route);
+                controller.Attributes.Add((Attribute)attribute);
             }
         }
         private void WithConvention(ControllerModel controller)
@@ -62,7 +52,6 @@ namespace HillPigeon.ApplicationModels
 
         private bool IsAction(MethodInfo methodInfo)
         {
-
             if (methodInfo == null)
             {
                 throw new ArgumentNullException(nameof(methodInfo));

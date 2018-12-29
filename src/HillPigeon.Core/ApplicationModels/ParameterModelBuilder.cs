@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,32 +17,18 @@ namespace HillPigeon.ApplicationModels
             ParameterModel parameterModel = new ParameterModel(parameter);
             parameterModel.ActionContext = actionModel;
 
-            this.WithBindingSource(parameterModel, parameter);
+            this.WithAttributes(parameterModel, parameter);
             this.WithConvention(parameterModel);
             return parameterModel;
         }
-
-
-        private void WithBindingSource(ParameterModel parameterModel, ParameterInfo parameterInfo)
+        private void WithAttributes(ParameterModel parameterModel, ParameterInfo parameterInfo)
         {
-            this.WithBindingSource<FromBodyAttribute>(parameterModel, parameterInfo);
-            this.WithBindingSource<FromFormAttribute>(parameterModel, parameterInfo);
-            this.WithBindingSource<FromHeaderAttribute>(parameterModel, parameterInfo);
-            this.WithBindingSource<FromQueryAttribute>(parameterModel, parameterInfo);
-            this.WithBindingSource<FromRouteAttribute>(parameterModel, parameterInfo);
-            this.WithBindingSource<FromServicesAttribute>(parameterModel, parameterInfo);
-        }
-
-        private void WithBindingSource<TAttribute>(ParameterModel parameterModel, ParameterInfo parameterInfo)
-            where TAttribute : Attribute, IBindingSourceMetadata
-        {
-            var attr = parameterInfo.GetCustomAttribute<TAttribute>();
-            if (attr != null)
+            var attributes = parameterInfo.GetCustomAttributes();
+            foreach (var attribute in attributes)
             {
-                parameterModel.BindingSources.Add((IBindingSourceMetadata)attr);
+                parameterModel.Attributes.Add((Attribute)attribute);
             }
         }
-    
         private void WithConvention(ParameterModel parameterModel)
         {
             foreach (var item in _parameterModelConventions)

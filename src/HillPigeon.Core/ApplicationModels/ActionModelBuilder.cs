@@ -1,7 +1,5 @@
 ﻿using HillPigeon.ApplicationBuilder;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -26,9 +24,7 @@ namespace HillPigeon.ApplicationModels
             actionModel.Controller = controller;
 
             this.WithActionName(actionModel, methodInfo);
-            this.WithAuthorizeAttribute(actionModel, methodInfo);
-            this.WithRouteAttribute(actionModel, methodInfo);
-            this.WithHttpMethodAttribute(actionModel, methodInfo);
+            this.WithAttributes(actionModel, methodInfo);
             this.WithParameter(actionModel, methodInfo);
             this.WithActionIL(actionModel, methodInfo);
             this.WithConvention(actionModel);
@@ -46,61 +42,12 @@ namespace HillPigeon.ApplicationModels
                 actionModel.ActionName = methodInfo.Name;
             }
         }
-        private void WithAuthorizeAttribute(ActionModel actionModel, MethodInfo methodInfo)
+        private void WithAttributes(ActionModel actionModel, MethodInfo methodInfo)
         {
-            var allowAnonymous = methodInfo.GetCustomAttribute<AllowAnonymousAttribute>();
-            if (allowAnonymous != null)
+            var attributes = methodInfo.GetCustomAttributes(inherit: true);
+            foreach (var attribute in attributes)
             {
-                actionModel.AllowAnonymous = true;
-                return;
-            }
-            var authorizes = methodInfo.GetCustomAttributes<AuthorizeAttribute>(inherit: true);
-            foreach (var authorize in authorizes)
-            {
-                actionModel.Authorizes.Add(authorize);
-            }
-        }
-        private void WithRouteAttribute(ActionModel actionModel, MethodInfo methodInfo)
-        {
-            var routes = methodInfo.GetCustomAttributes<RouteAttribute>(inherit: true);
-            if (routes.Count() > 0)
-            {
-                foreach (var route in routes)
-                {
-                    actionModel.Routes.Add(route);
-                }
-            }
-        }
-        private void WithHttpMethodAttribute(ActionModel actionModel, MethodInfo methodInfo)
-        {
-            //把HttpMethodAttribute 转换为AcceptVerbsAttribute
-            this.WithHttpMethodAttribute<HttpDeleteAttribute>(actionModel, methodInfo);
-            this.WithHttpMethodAttribute<HttpGetAttribute>(actionModel, methodInfo);
-            this.WithHttpMethodAttribute<HttpHeadAttribute>(actionModel, methodInfo);
-            this.WithHttpMethodAttribute<HttpOptionsAttribute>(actionModel, methodInfo);
-            this.WithHttpMethodAttribute<HttpPatchAttribute>(actionModel, methodInfo);
-            this.WithHttpMethodAttribute<HttpPostAttribute>(actionModel, methodInfo);
-            this.WithHttpMethodAttribute<HttpPutAttribute>(actionModel, methodInfo);
-
-            var acceptVerbsList = methodInfo.GetCustomAttributes<AcceptVerbsAttribute>(inherit: true).ToList();
-            foreach (var acceptVerbs in acceptVerbsList)
-            {
-                actionModel.HttpMethods.Add(acceptVerbs);
-            }
-        }
-        private void WithHttpMethodAttribute<TAttribute>(ActionModel actionModel, MethodInfo methodInfo)
-            where TAttribute : HttpMethodAttribute
-        {
-            var httpMethod = methodInfo.GetCustomAttribute<TAttribute>(inherit: true);
-            if (httpMethod != null)
-            {
-                var acceptVerbs = new AcceptVerbsAttribute(httpMethod.HttpMethods.ToArray())
-                {
-                    Name = httpMethod.Name,
-                    Order = httpMethod.Order,
-                    Route = httpMethod.Template
-                };
-                actionModel.HttpMethods.Add(acceptVerbs);
+                actionModel.Attributes.Add((Attribute)attribute);
             }
         }
         private void WithParameter(ActionModel actionModel, MethodInfo methodInfo)

@@ -1,15 +1,10 @@
-﻿using System;
+﻿using HillPigeon.Core.Test.Infrastructure;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-using HillPigeon.Core.Test.Infrastructure;
 using System.Net;
 using System.Net.Http;
-using Newtonsoft.Json;
+using System.Text;
+using Xunit;
 
 namespace HillPigeon.Core.Test
 {
@@ -22,7 +17,7 @@ namespace HillPigeon.Core.Test
             var response = request.GetAsync().GetAwaiter().GetResult();
             var message = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal("Success", message);
+            Assert.Equal("[\"value1\",\"value2\"]", message);
         }
 
         [Fact]

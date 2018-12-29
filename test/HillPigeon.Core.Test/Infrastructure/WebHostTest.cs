@@ -9,8 +9,16 @@ namespace HillPigeon.Core.Test.Infrastructure
     {
         public WebHostTest()
         {
-            var builder = WebHost.CreateDefaultBuilder().UseStartup<Startup>();
-            this.Server = new TestServer(builder);
+            try
+            {
+                var builder = WebHost.CreateDefaultBuilder().UseStartup<Startup>();
+                this.Server = new TestServer(builder);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
         }
         public TestServer Server { get; }
     }
