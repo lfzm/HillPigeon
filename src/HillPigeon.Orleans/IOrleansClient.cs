@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Orleans.HttpGateway
+namespace HillPigeon.Orleans
 {
     public interface IOrleansClient : IGrainFactory
     {

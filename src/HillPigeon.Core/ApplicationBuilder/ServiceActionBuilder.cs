@@ -10,14 +10,14 @@ namespace HillPigeon.ApplicationBuilder
     {
         public void Build(TypeBuilder builder, ServiceActionBuildContext context)
         {
-            var paramTypes = context.Action.Parameters.OrderBy(f => f.Position).Select(f => f.ParameterType).ToArray();
-            var methodBuilder = builder.DefineMethod(context.Action.ActionName, MethodAttributes.Public, context.Action.ReturnType, paramTypes);
+            var paramTypes = context.ActionModel.Parameters.OrderBy(f => f.Position).Select(f => f.ParameterType).ToArray();
+            var methodBuilder = builder.DefineMethod(context.ActionModel.ActionName, MethodAttributes.Public, context.ActionModel.ReturnType, paramTypes);
 
             this.BuildAction(methodBuilder, context);
         }
         public void BuildAction(MethodBuilder builder, ServiceActionBuildContext context)
         {
-            var actionModel = context.Action;
+            var actionModel = context.ActionModel;
             this.BuildParameter(builder, actionModel);
             this.BuildAttribute(builder, actionModel.Attributes);
             this.BuildMethodContext(builder, context, actionModel.GeneratActionIL);

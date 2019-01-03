@@ -8,10 +8,10 @@ namespace HillPigeon.ApplicationBuilder
     {
         public ServiceActionBuildContext(ActionModel action, ServiceControllerBuildContext controllerBuildContext)
         {
-            this.Action = action;
+            this.ActionModel = action;
             this.ControllerBuildContext = controllerBuildContext;
         }
-        public ActionModel Action { get; }
+        public ActionModel ActionModel { get; }
 
         public ServiceControllerBuildContext ControllerBuildContext { get; }
     }

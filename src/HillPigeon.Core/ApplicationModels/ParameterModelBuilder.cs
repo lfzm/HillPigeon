@@ -15,7 +15,7 @@ namespace HillPigeon.ApplicationModels
         public ParameterModel Build(ActionModel actionModel, ParameterInfo parameter)
         {
             ParameterModel parameterModel = new ParameterModel(parameter);
-            parameterModel.ActionContext = actionModel;
+            parameterModel.ActionModel = actionModel;
 
             this.WithAttributes(parameterModel, parameter);
             this.WithConvention(parameterModel);

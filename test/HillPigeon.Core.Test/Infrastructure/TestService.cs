@@ -43,5 +43,11 @@ namespace HillPigeon.Core.Test.Infrastructure
         public void Delete(int id)
         {
         }
+
+        [AcceptVerbs("Get","POST",Route = "AddTest")]
+        public void AddTest([FromForm]string name)
+        {
+
+        }
     }
 }

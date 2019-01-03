@@ -63,7 +63,7 @@ namespace HillPigeon.ApplicationModels
         {
             actionModel.GeneratActionIL = (ServiceActionBuildContext context, ILGenerator il) =>
             {
-                ActionModel action = context.Action;
+                ActionModel action = context.ActionModel;
                 //定义二个存储
                 il.DeclareLocal(action.Controller.ControllerType);
                 il.DeclareLocal(action.ReturnType);
