@@ -17,7 +17,7 @@ namespace HillPigeon.ApplicationModels
         }
         public ControllerModel Build(TypeInfo typeInfo, string moduleName)
         {
-            ControllerModel controller = new ControllerModel(moduleName, typeInfo);
+            ControllerModel controller = new ControllerModel( typeInfo);
             this.WithAttributes(controller, typeInfo);
             this.WithActionModel(controller, typeInfo);
             this.WithConvention(controller);

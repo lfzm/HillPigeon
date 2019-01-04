@@ -1,7 +1,6 @@
 ﻿using HillPigeon.ApplicationModels;
 using HillPigeon.Orleans.Configuration;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Options;
 using Orleans;
 using System;
@@ -22,7 +21,7 @@ namespace HillPigeon.Orleans
         }
         public void Apply(ActionModel actionModel)
         {
-            if (!OrleansGrainHelper.IsGrain(actionModel.Controller.ControllerType))
+            if (!actionModel.Controller.ControllerType.IsGrain())
             {
                 return;
             }

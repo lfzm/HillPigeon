@@ -15,7 +15,7 @@ namespace HillPigeon.Orleans
             }
             foreach (var type in parts.Types)
             {
-                if (OrleansGrainHelper.IsGrain(type))
+                if (type.IsGrain())
                 {
                     feature.Controllers.Add(type);
                 }

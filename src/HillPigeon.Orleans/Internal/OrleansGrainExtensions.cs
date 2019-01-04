@@ -1,13 +1,11 @@
 ﻿using Orleans;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HillPigeon.Orleans
 {
-    public static class OrleansGrainHelper
+    public static class OrleansGrainExtensions
     {
-        public static bool IsGrain(Type type)
+        public static bool IsGrain(this Type type)
         {
             if (!type.IsInterface)
             {

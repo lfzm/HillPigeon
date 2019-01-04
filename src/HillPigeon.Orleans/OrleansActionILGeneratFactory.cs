@@ -44,11 +44,11 @@ namespace HillPigeon.Orleans
             //4、获取Grain接口实例
             il.Emit(OpCodes.Ldloc_1);
             il.Emit(OpCodes.Ldloc_0);//primaryKey 
-            il.Emit(OpCodes.Ldarg_S, keyExtensionParam.Position);//keyExtension
-            if (grainClassParam != null)
+            if (keyExtensionParam != null)
             {
-                il.Emit(OpCodes.Ldarg_S, grainClassParam.Position);//grainClassNamePrefix
+                il.Emit(OpCodes.Ldarg_S, keyExtensionParam.Position);//keyExtension
             }
+            il.Emit(OpCodes.Ldarg_S, grainClassParam.Position);//grainClassNamePrefix
             il.Emit(OpCodes.Callvirt, typeof(IOrleansClient).GetMethod("GetGrain", new Type[] { grainPrimaryKey.Type, keyExtensionParam.ParameterType, grainClassParam.ParameterType }).MakeGenericMethod(actionModel.Controller.ControllerType));
             il.Emit(OpCodes.Stloc_2);
 

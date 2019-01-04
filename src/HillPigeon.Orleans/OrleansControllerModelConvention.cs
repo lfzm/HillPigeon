@@ -16,7 +16,7 @@ namespace HillPigeon.Orleans
         }
         public void Apply(ControllerModel controllerModel)
         {
-            if (!OrleansGrainHelper.IsGrain(controllerModel.ControllerType))
+            if (!controllerModel.ControllerType.IsGrain())
             {
                 return;
             }

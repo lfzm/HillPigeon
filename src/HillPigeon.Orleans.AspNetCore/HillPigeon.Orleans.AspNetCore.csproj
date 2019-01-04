@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HillPigeon.Core\HillPigeon.Core.csproj" />
     <ProjectReference Include="..\HillPigeon.Orleans\HillPigeon.Orleans.csproj" />
   </ItemGroup>
 

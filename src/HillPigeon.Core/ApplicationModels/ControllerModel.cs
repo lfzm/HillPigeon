@@ -5,10 +5,10 @@ namespace HillPigeon
 {
     public class ControllerModel
     {
-        public ControllerModel(string moduleName, Type controllerType)
+        public ControllerModel( Type controllerType)
         {
             this.ControllerName = controllerType.Name;
-            this.ModuleName = moduleName;
+            this.ModuleName = controllerType.Module.Name.Replace(".dll","");
             this.ControllerType = controllerType;
             this.Attributes = new List<Attribute>();
             this.Actions = new List<ActionModel>();

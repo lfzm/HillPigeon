@@ -32,10 +32,10 @@ namespace HillPigeon.ApplicationBuilder
         {
             return moduleBuilders.GetOrAdd(moduleName, (key) =>
             {
-                string name = "HillPigeon.Core.DynamicClient";
+                string name = "HillPigeon.Core.WebApiClient";
                 if (!string.IsNullOrEmpty(key))
                 {
-                    name = name + "." + moduleName;
+                    name = moduleName + ".WebApiClient";
                 }
                 var asmName = new AssemblyName(name);
                 var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(asmName, AssemblyBuilderAccess.Run);

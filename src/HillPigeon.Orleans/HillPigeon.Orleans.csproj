@@ -12,8 +12,4 @@
     <ProjectReference Include="..\HillPigeon.Core\HillPigeon.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DependencyInjection\" />
-  </ItemGroup>
-
 </Project>

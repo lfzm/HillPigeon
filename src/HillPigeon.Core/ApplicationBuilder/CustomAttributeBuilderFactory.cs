@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -18,8 +19,9 @@ namespace HillPigeon.ApplicationBuilder
             {
                 //无需赋值
             }
-            else if (attribute is ApiVersionAttribute apiVerAttr)
+            else if (typeof(ApiVersionsBaseAttribute).IsAssignableFrom(attribute.GetType()))
             {
+                var apiVerAttr = (ApiVersionsBaseAttribute)attribute;
                 constructorInfo = attribute.GetType().GetConstructor(new Type[] { typeof(ApiVersion) });
                 foreach (var versions in apiVerAttr.Versions)
                 {
@@ -37,7 +39,7 @@ namespace HillPigeon.ApplicationBuilder
                 constructorInfo = attribute.GetType().GetConstructor(new Type[] { typeof(string[]) });
                 values = new object[] { acceptVerbs.HttpMethods.ToArray() };
             }
-            else if (attribute is HttpDeleteAttribute || attribute is HttpGetAttribute || attribute is HttpHeadAttribute || attribute is HttpPatchAttribute || attribute is HttpOptionsAttribute || attribute is HttpPostAttribute || attribute is HttpPutAttribute)
+            else if (typeof(HttpMethodAttribute).IsAssignableFrom(attribute.GetType()))
             {
                 var httpMethod = (HttpMethodAttribute)attribute;
                 if (!string.IsNullOrEmpty(httpMethod.Template))
@@ -46,7 +48,7 @@ namespace HillPigeon.ApplicationBuilder
                     values = new object[] { httpMethod.Template };
                 }
             }
-            else if (attribute is FromBodyAttribute || attribute is FromFormAttribute || attribute is FromHeaderAttribute || attribute is FromQueryAttribute || attribute is FromRouteAttribute || attribute is FromServicesAttribute)
+            else if (attribute.IsBindingSourceAttribute())
             {
                 // 无需赋值
             }
@@ -72,6 +74,19 @@ namespace HillPigeon.ApplicationBuilder
                 values[i] = property.GetValue(attribute);
             }
             return new CustomAttributeBuilder(con, constructorArgs, properties, values);
+        }
+
+        public static bool IsBindingSourceAttribute(this Attribute attribute)
+        {
+            if (attribute is FromBodyAttribute || 
+                attribute is FromFormAttribute || 
+                attribute is FromHeaderAttribute || 
+                attribute is FromQueryAttribute || 
+                attribute is FromRouteAttribute || 
+                attribute is FromServicesAttribute)
+                return true;
+            else
+                return false;
         }
     }
 }
