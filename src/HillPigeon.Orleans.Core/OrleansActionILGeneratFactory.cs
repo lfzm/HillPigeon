@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Reflection.Emit;
 
-namespace HillPigeon.Orleans
+namespace HillPigeon.Orleans.Core
 {
     public class OrleansActionILGeneratFactory
     {

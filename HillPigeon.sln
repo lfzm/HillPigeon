@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans.AspNetCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{08723A56-D98B-4854-A25D-31D628366946}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans.Core", "src\HillPigeon.Orleans.Ocelot.Core\HillPigeon.Orleans.Core.csproj", "{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans.Core", "src\HillPigeon.Orleans.Core\HillPigeon.Orleans.Core.csproj", "{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

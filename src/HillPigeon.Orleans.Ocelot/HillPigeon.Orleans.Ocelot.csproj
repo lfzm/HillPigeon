@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HillPigeon.Orleans.Core\HillPigeon.Orleans.Core.csproj" />
+  </ItemGroup>
+
 </Project>

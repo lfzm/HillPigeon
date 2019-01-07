@@ -1,5 +1,5 @@
 ﻿using HillPigeon.ApplicationModels;
-using HillPigeon.Orleans.Configuration;
+using HillPigeon.Orleans.Core.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Orleans;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace HillPigeon.Orleans
+namespace HillPigeon.Orleans.Core
 {
     public class OrleansActionModelConvention : IActionModelConvention
     {
@@ -28,7 +28,7 @@ namespace HillPigeon.Orleans
             actionModel.GeneratActionIL = _actionILGeneratFactory.GeneratActionIL;
             this.SetGrainParameter(actionModel);//设置IGrainFactory：keyExtension,grainClassNamePrefix
             this.SetHttpMethod(actionModel);
-            this.SetRoute(actionModel);
+            this.SetRoute(actionModel);// 定义PrimaryKey 路由
         }
 
         private void SetHttpMethod(ActionModel actionModel)
@@ -47,6 +47,11 @@ namespace HillPigeon.Orleans
         {
             //判断是否需要设置路由
             if (!actionModel.IsNeedSetRoute())
+            {
+                return;
+            }
+            // 已经标注了NotPrimaryKeyAttribute
+            if (actionModel.MethodInfo.GetCustomAttribute<NotPrimaryKeyAttribute>() != null)
             {
                 return;
             }

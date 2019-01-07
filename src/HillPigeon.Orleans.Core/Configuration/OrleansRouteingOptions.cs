@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HillPigeon.Orleans.Configuration
+namespace HillPigeon.Orleans.Core.Configuration
 {
     public class OrleansRouteingOptions
     {

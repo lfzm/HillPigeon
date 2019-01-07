@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Routing;
 using System.Linq;
 
-namespace HillPigeon.Orleans
+namespace HillPigeon.Orleans.Core
 {
     public static class ActionModelExtensions
     {

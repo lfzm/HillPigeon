@@ -1,11 +1,11 @@
 ﻿using HillPigeon.ApplicationModels;
-using HillPigeon.Orleans.Configuration;
+using HillPigeon.Orleans.Core.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Options;
 using System.Linq;
 
-namespace HillPigeon.Orleans
+namespace HillPigeon.Orleans.Core
 {
     public class OrleansControllerModelConvention : IControllerModelConvention
     {
