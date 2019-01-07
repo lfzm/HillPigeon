@@ -1,7 +1,9 @@
 ﻿using HillPigeon.ApplicationModels;
 using HillPigeon.ApplicationParts;
+using Microsoft.AspNetCore.Mvc;
 using Orleans;
 using System;
+using System.Reflection;
 
 namespace HillPigeon.Orleans.Core
 {
@@ -15,13 +17,42 @@ namespace HillPigeon.Orleans.Core
             }
             foreach (var type in parts.Types)
             {
-                if (type.IsGrain())
+                if (type.IsGrain() && this.IsController(type))
                 {
                     feature.Controllers.Add(type);
                 }
             }
         }
+        protected bool IsController(Type typeInfo)
+        {
+            if (!typeInfo.IsClass)
+            {
+                return false;
+            }
 
-       
+            if (typeInfo.IsAbstract)
+            {
+                return false;
+            }
+
+            // We only consider public top-level classes as controllers. IsPublic returns false for nested
+            // classes, regardless of visibility modifiers
+            if (!typeInfo.IsPublic)
+            {
+                return false;
+            }
+
+            if (typeInfo.ContainsGenericParameters)
+            {
+                return false;
+            }
+
+            if (typeInfo.IsDefined(typeof(NonControllerAttribute)))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

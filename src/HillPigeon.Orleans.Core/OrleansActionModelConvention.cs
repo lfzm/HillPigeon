@@ -73,6 +73,7 @@ namespace HillPigeon.Orleans.Core
             }
 
             var keyParameter = this.BuildParameterModel(actionModel, primaryKeyName, typeof(string), new List<Attribute> { new FromRouteAttribute() });
+            keyParameter.Feature = "Orleans_Primary";
             keyParameter.HasDefaultValue = true;
             keyParameter.DefaultValue = grainPrimaryKey.defaultValue;
             actionModel.Parameters.Add(keyParameter);
@@ -88,6 +89,7 @@ namespace HillPigeon.Orleans.Core
             };
             //添加 __grainClassNamePrefix 参数
             var grainClassParam = this.BuildParameterModel(actionModel, "__grainClassNamePrefix", typeof(string), attributes);
+            grainClassParam.Feature = "Orleans_grainClassNamePrefix";
             grainClassParam.HasDefaultValue = true;
             actionModel.Parameters.Add(grainClassParam);
 
@@ -97,6 +99,7 @@ namespace HillPigeon.Orleans.Core
             {
 
                 var keyExtensionParam = this.BuildParameterModel(actionModel, "__keyExtension", typeof(string), attributes);
+                grainClassParam.Feature = "Orleans_keyExtension";
                 keyExtensionParam.HasDefaultValue = true;
                 actionModel.Parameters.Add(keyExtensionParam);
             }

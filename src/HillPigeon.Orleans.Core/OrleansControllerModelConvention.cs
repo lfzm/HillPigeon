@@ -20,9 +20,9 @@ namespace HillPigeon.Orleans.Core
             {
                 return;
             }
-            if (_options.ControllerNameRuleFunction != null)
+            if (_options.ControllerNameRule != null)
             {
-                controllerModel.ControllerName = _options.ControllerNameRuleFunction(controllerModel);
+                controllerModel.ControllerName = _options.ControllerNameRule(controllerModel);
             }
             if (controllerModel.Attributes.Where(attr => typeof(IRouteTemplateProvider).IsAssignableFrom(attr.GetType())).Count() == 0)
             {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -12,9 +11,9 @@ namespace HillPigeon
             this.Attributes = new List<Attribute>();
 
         }
-        public ParameterModel(ParameterInfo parameterInfo):this()
+        public ParameterModel(ParameterInfo parameterInfo) : this()
         {
-            this.Position = parameterInfo.Position+1;
+            this.Position = parameterInfo.Position + 1;
             this.ParameterName = parameterInfo.Name;
             this.ParameterType = parameterInfo.ParameterType;
             this.ParameterAttributes = parameterInfo.Attributes;
@@ -29,5 +28,7 @@ namespace HillPigeon
         public object DefaultValue { get; set; }
         public IList<Attribute> Attributes { get; }
         public ActionModel ActionModel { get; set; }
+
+        public string Feature { get; set; }
     }
 }
