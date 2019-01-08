@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
+    <Folder Include="DependencyInjection\" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ namespace HillPigeon.Core.Test.Infrastructure
         {
             try
             {
-                var builder = WebHost.CreateDefaultBuilder().UseStartup<Startup>();
+                var builder = new WebHostBuilder().UseStartup<Startup>();
                 this.Server = new TestServer(builder);
             }
             catch (System.Exception ex)

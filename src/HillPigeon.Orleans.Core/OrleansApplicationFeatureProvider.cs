@@ -1,7 +1,6 @@
 ﻿using HillPigeon.ApplicationModels;
 using HillPigeon.ApplicationParts;
 using Microsoft.AspNetCore.Mvc;
-using Orleans;
 using System;
 using System.Reflection;
 
@@ -25,6 +24,10 @@ namespace HillPigeon.Orleans.Core
         }
         protected bool IsController(Type typeInfo)
         {
+            if (!typeInfo.IsInterface)
+            {
+                return false;
+            }
             if (!typeInfo.IsClass)
             {
                 return false;

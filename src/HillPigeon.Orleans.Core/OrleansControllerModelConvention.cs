@@ -20,15 +20,31 @@ namespace HillPigeon.Orleans.Core
             {
                 return;
             }
+
+            this.ConversionMacAttribute(controllerModel);
+            this.SetControllerName(controllerModel);
+            this.SetRoute(controllerModel);
+        }
+
+        private void ConversionMacAttribute(ControllerModel controllerModel)
+        {
+            HillPigeonMvcAttributeConversion.Conversion(controllerModel.Attributes);
+        }
+        private void SetControllerName(ControllerModel controllerModel)
+        {
             if (_options.ControllerNameRule != null)
             {
                 controllerModel.ControllerName = _options.ControllerNameRule(controllerModel);
             }
+        }
+        private void SetRoute(ControllerModel controllerModel)
+        {
             if (controllerModel.Attributes.Where(attr => typeof(IRouteTemplateProvider).IsAssignableFrom(attr.GetType())).Count() == 0)
             {
                 var routeAttr = new RouteAttribute(controllerModel.ControllerName);
                 controllerModel.Attributes.Add(routeAttr);
             }
+
         }
     }
 }

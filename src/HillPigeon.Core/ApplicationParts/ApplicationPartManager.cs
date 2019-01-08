@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace HillPigeon.ApplicationParts
 {
-    public class HillPigeonApplicationPartManager
+    public class ApplicationPartManager : IApplicationPartManager
     {
-        public HillPigeonApplicationPartManager()
+        private readonly List<ApplicationPart> applicationParts = new List<ApplicationPart>();
+        public ApplicationPartManager()
         {
-            ApplicationParts = new List<ApplicationPart>();
         }
         /// <summary>
         /// Gets the list of <see cref="ApplicationPart"/> instances.
@@ -18,8 +18,17 @@ namespace HillPigeon.ApplicationParts
         /// multiple <see cref="ApplicationPart"/> instances resolve equivalent feature values.
         /// </para>
         /// </summary>
-        public IList<ApplicationPart> ApplicationParts { get; } 
+        public IReadOnlyList<ApplicationPart> ApplicationParts => applicationParts;
 
-       
+        /// <summary>
+        /// Add ApplicationPart
+        /// </summary>
+        /// <param name="part"></param>
+        /// <returns></returns>
+        public IApplicationPartManager AddApplicationPart(ApplicationPart part)
+        {
+            if (!this.applicationParts.Contains(part)) this.applicationParts.Add(part);
+            return this;
+        }
     }
 }

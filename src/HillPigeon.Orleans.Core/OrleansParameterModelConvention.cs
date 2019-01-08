@@ -14,6 +14,17 @@ namespace HillPigeon.Orleans.Core
             if (parameterModel.Attributes.Where(attr => attr.IsBindingSourceAttribute()).Count() > 0)
                 return;
 
+            this.ConversionMacAttribute(parameterModel);
+            this.SetBindingSource(parameterModel);
+        }
+
+        private void ConversionMacAttribute(ParameterModel parameterModel)
+        {
+            HillPigeonMvcAttributeConversion.Conversion(parameterModel.Attributes);
+        }
+
+        private void SetBindingSource(ParameterModel parameterModel)
+        {
             //if the type can have children ,the use FromBodyAttribute 
             if (parameterModel.ParameterType.CanHaveChildren())
             {

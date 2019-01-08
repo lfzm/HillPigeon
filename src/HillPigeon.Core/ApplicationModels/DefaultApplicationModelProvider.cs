@@ -10,17 +10,17 @@ namespace HillPigeon.ApplicationModels
     internal class DefaultApplicationModelProvider : IApplicationModelProvider
     {
         private readonly IApplicationFeatureProvider[] _applicationFeatureProviders;
-        private readonly HillPigeonApplicationPartManager _applicationPartManager;
+        private readonly ApplicationPartManager _applicationPartManager;
         private readonly ControllerModelBuilder _controllerModelBuilder;
         private readonly ILogger _logger;
         private ApplicationModel applicationModel;
         public DefaultApplicationModelProvider(
-            IOptions<HillPigeonApplicationPartManager> applicationPartManager,
+            ApplicationPartManager applicationPartManager,
             ControllerModelBuilder controllerModelBuilder,
             IEnumerable<IApplicationFeatureProvider> applicationFeatureProviders,
             ILogger<DefaultApplicationModelProvider> logger)
         {
-            this._applicationPartManager = applicationPartManager.Value;
+            this._applicationPartManager = applicationPartManager;
             this._controllerModelBuilder = controllerModelBuilder;
             this._applicationFeatureProviders = applicationFeatureProviders.ToArray();
             this._logger = logger;

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using HillPigeon.ApplicationModels;
+﻿using HillPigeon.ApplicationModels;
 using HillPigeon.ApplicationParts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace HillPigeon.Core.Test.Infrastructure
 {
@@ -23,13 +23,14 @@ namespace HillPigeon.Core.Test.Infrastructure
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IApplicationFeatureProvider, TestApplicationFeatureProvider>();
-            services.AddMvc()
-                .AddHillPigeon(manager =>
+            services.AddMvcCore()
+                .AddJsonFormatters()
+                .AddHillPigeon(build =>
                 {
-                    manager.ApplicationParts.Add(new AssemblyPart(this.GetType().Assembly));
+                    build.PartManager.AddApplicationPart(new AssemblyPart(this.GetType().Assembly));
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+          
             services.AddScoped<TestService>();
             if (services.All(u => u.ServiceType != typeof(IHttpContextAccessor)))
             {

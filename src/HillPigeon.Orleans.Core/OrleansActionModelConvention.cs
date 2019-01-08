@@ -25,15 +25,23 @@ namespace HillPigeon.Orleans.Core
             {
                 return;
             }
-            actionModel.GeneratActionIL = _actionILGeneratFactory.GeneratActionIL;
+            this.ConversionMacAttribute(actionModel);
             this.SetGrainParameter(actionModel);//设置IGrainFactory：keyExtension,grainClassNamePrefix
             this.SetHttpMethod(actionModel);
             this.SetRoute(actionModel);// 定义PrimaryKey 路由
+            this.SetGeneratActionIL(actionModel);
         }
-
+        private void ConversionMacAttribute(ActionModel actionModel)
+        {
+            HillPigeonMvcAttributeConversion.Conversion(actionModel.Attributes);
+        }
+        private void SetGeneratActionIL(ActionModel actionModel)
+        {
+            actionModel.GeneratActionIL = _actionILGeneratFactory.GeneratActionIL;
+        }
         private void SetHttpMethod(ActionModel actionModel)
         {
-            if(!actionModel.IsNeedSetHttpMethod())
+            if (!actionModel.IsNeedSetHttpMethod())
             {
                 return;
             }
@@ -104,7 +112,6 @@ namespace HillPigeon.Orleans.Core
                 actionModel.Parameters.Add(keyExtensionParam);
             }
         }
-
         private ParameterModel BuildParameterModel(ActionModel actionModel, string name, Type type, IList<Attribute> attributes)
         {
             var param = new ParameterModel()
@@ -124,6 +131,6 @@ namespace HillPigeon.Orleans.Core
             }
             return param;
         }
-   
+
     }
 }
