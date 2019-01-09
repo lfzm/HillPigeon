@@ -1,8 +1,8 @@
 ﻿using HillPigeon.ApplicationBuilder;
 using HillPigeon.ApplicationModels;
 using HillPigeon.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HillPigeon.DependencyInjection
@@ -13,10 +13,13 @@ namespace HillPigeon.DependencyInjection
 
         public IServiceCollection Services { get; }
 
+        public IDictionary<object, object> Properties { get; }
+
         public HillPigeonBuilder(IServiceCollection services)
         {
             this.Services = services;
             this.PartManager = new ApplicationParts.ApplicationPartManager();
+            this.Properties = new Dictionary<object, object>();
         }
 
         public void Build()

@@ -9,8 +9,8 @@ namespace HillPigeon.Orleans.Core
 {
     public class OrleansControllerModelConvention : IControllerModelConvention
     {
-        private readonly OrleansRouteingOptions _options;
-        public OrleansControllerModelConvention(IOptions<OrleansRouteingOptions> options)
+        private readonly OrleansRoutingOptions _options;
+        public OrleansControllerModelConvention(IOptions<OrleansRoutingOptions> options)
         {
             _options = options.Value;
         }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace HillPigeon.Orleans.AspNetCore
 {
-    public class HttpGatewayOptions : OrleansRouteingOptions
+    public class HttpGatewayOptions
     {
         public Action<IMvcCoreBuilder> MvcBuilderAction { get; set; }
 

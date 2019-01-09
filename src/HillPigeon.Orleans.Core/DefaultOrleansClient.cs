@@ -11,10 +11,10 @@ namespace HillPigeon.Orleans.Core
     {
         private readonly IClusterClientFactory _clusterClientFactory;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly OrleansRouteingOptions _options;
+        private readonly OrleansRoutingOptions _options;
 
         public DefaultOrleansClient(IClusterClientFactory clusterClientFactory,
-            IHttpContextAccessor httpContextAccessor, IOptions<OrleansRouteingOptions> options)
+            IHttpContextAccessor httpContextAccessor, IOptions<OrleansRoutingOptions> options)
         {
             this._clusterClientFactory = clusterClientFactory;
             this._httpContextAccessor = httpContextAccessor;

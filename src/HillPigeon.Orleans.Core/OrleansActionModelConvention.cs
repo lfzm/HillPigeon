@@ -12,9 +12,9 @@ namespace HillPigeon.Orleans.Core
 {
     public class OrleansActionModelConvention : IActionModelConvention
     {
-        private readonly OrleansRouteingOptions _options;
+        private readonly OrleansRoutingOptions _options;
         private readonly OrleansActionILGeneratFactory _actionILGeneratFactory;
-        public OrleansActionModelConvention(IOptions<OrleansRouteingOptions> options, OrleansActionILGeneratFactory actionILGeneratFactory)
+        public OrleansActionModelConvention(IOptions<OrleansRoutingOptions> options, OrleansActionILGeneratFactory actionILGeneratFactory)
         {
             _options = options.Value;
             _actionILGeneratFactory = actionILGeneratFactory;
