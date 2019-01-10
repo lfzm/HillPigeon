@@ -1,6 +1,7 @@
 ﻿using HillPigeon.DependencyInjection;
-using HillPigeon.Orleans.Core;
-using HillPigeon.Orleans.Core.Configuration;
+using HillPigeon.Orleans;
+using HillPigeon.Orleans.ApplicationModels;
+using HillPigeon.Orleans.Configuration;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -22,18 +23,21 @@ namespace Microsoft.Extensions.DependencyInjection
         }
         public static IHillPigeonBuilder AddOrleans(this IHillPigeonBuilder builder)
         {
-            builder.PostConfigureOrleansRoutingOptions();
+            builder.PostConfigureOrleansRouting();
             builder.AddOrleansCore();
             return builder;
         }
         public static IHillPigeonBuilder AddOrleansCore(this IHillPigeonBuilder builder)
         {
+            //配置HillPigeon ApplicationModels组件
             builder.Services.AddSingleton<OrleansActionILGeneratFactory>();
-            //配置HillPigeon组件
             builder.AddActionModelConvention<OrleansActionModelConvention>();
             builder.AddControllerModelConvention<OrleansControllerModelConvention>();
             builder.AddParameterModelConvention<OrleansParameterModelConvention>();
             builder.AddApplicationFeatureProvider<OrleansApplicationFeatureProvider>();
+            //配置Orleans Client
+            builder.Services.AddSingleton<IClusterClientFactory, DefaultClusterClientFactory>();
+            builder.Services.AddSingleton<IOrleansClient, DefaultOrleansClient>();
             return builder;
         }
     }

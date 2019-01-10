@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans.ApplicationModels
 {
     public class HillPigeonMvcAttributeConversion
     {

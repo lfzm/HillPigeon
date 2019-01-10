@@ -1,5 +1,5 @@
 ﻿using HillPigeon.DependencyInjection;
-using HillPigeon.Orleans.Core.Configuration;
+using HillPigeon.Orleans.Configuration;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
 
-        internal static IHillPigeonBuilder PostConfigureOrleansRoutingOptions(this IHillPigeonBuilder builder)
+        internal static IHillPigeonBuilder PostConfigureOrleansRouting(this IHillPigeonBuilder builder)
         {
             OrleansRoutingOptions routingOptions;
             if (builder.Properties.ContainsKey(orleansRouteingOptionsKey))

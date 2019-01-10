@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Reflection;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans.ApplicationModels
 {
     public class OrleansApplicationFeatureProvider : IApplicationFeatureProvider
     {

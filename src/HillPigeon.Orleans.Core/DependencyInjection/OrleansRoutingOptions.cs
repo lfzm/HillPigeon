@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 
-namespace HillPigeon.Orleans.Core.Configuration
+namespace HillPigeon.Orleans.Configuration
 {
     public class OrleansRoutingOptions
     {

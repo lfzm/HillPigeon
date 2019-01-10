@@ -1,6 +1,6 @@
 ﻿using Orleans;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans
 {
     public interface IClusterClientFactory
     {

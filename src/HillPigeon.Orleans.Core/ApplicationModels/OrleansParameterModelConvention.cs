@@ -4,7 +4,7 @@ using HillPigeon.Internal;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans.ApplicationModels
 {
     public class OrleansParameterModelConvention : IParameterModelConvention
     {

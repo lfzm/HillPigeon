@@ -1,11 +1,11 @@
-﻿using HillPigeon.Orleans.Core.Configuration;
+﻿using HillPigeon.Orleans.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.Runtime;
 using System;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans
 {
     public class DefaultOrleansClient : IOrleansClient
     {

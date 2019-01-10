@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{0872
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillPigeon.Orleans.Core", "src\HillPigeon.Orleans.Core\HillPigeon.Orleans.Core.csproj", "{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillPigeon.Orleans.Core.Test", "test\HillPigeon.Orleans.Core.Test\HillPigeon.Orleans.Core.Test.csproj", "{8C257611-FD35-490C-820C-303F95715C56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD9754B-6A59-4DC5-AB58-AD12EF31064A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C257611-FD35-490C-820C-303F95715C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C257611-FD35-490C-820C-303F95715C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C257611-FD35-490C-820C-303F95715C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C257611-FD35-490C-820C-303F95715C56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{5A7F3DC8-E49B-442B-9911-89B348C1B0B0} = {ABD66872-1EC1-4018-A2E8-E72549071CA2}
 		{6A7D9D1E-E5AC-46DF-B175-95F0E546FE05} = {ABD66872-1EC1-4018-A2E8-E72549071CA2}
 		{5FD9754B-6A59-4DC5-AB58-AD12EF31064A} = {ABD66872-1EC1-4018-A2E8-E72549071CA2}
+		{8C257611-FD35-490C-820C-303F95715C56} = {8B6F31CA-A458-4F92-94DB-727351E8BCE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9EBAC2E1-1F43-42AD-B529-2B32FBF80D2F}

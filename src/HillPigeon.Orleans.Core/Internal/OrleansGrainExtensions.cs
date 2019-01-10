@@ -1,7 +1,7 @@
 ﻿using Orleans;
 using System;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans
 {
     public static class OrleansGrainExtensions
     {

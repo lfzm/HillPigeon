@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
 
-        internal static IHillPigeonBuilder PostConfigureHttpGatewayOptions(this IHillPigeonBuilder builder)
+        internal static IHillPigeonBuilder PostConfigureHttpGateway(this IHillPigeonBuilder builder)
         {
             HttpGatewayOptions httpGatewayOptions;
             if (builder.Properties.ContainsKey(httpGatewayOptionsKey))

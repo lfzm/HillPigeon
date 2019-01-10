@@ -1,5 +1,5 @@
 ﻿using HillPigeon.ApplicationModels;
-using HillPigeon.Orleans.Core.Configuration;
+using HillPigeon.Orleans.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Orleans;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace HillPigeon.Orleans.Core
+namespace HillPigeon.Orleans.ApplicationModels
 {
     public class OrleansActionModelConvention : IActionModelConvention
     {

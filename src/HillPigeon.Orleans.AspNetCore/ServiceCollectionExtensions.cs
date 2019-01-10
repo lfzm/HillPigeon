@@ -1,4 +1,5 @@
 ﻿using HillPigeon.DependencyInjection;
+using HillPigeon.Orleans.AspNetCore;
 using Orleans.Hosting;
 using System;
 
@@ -14,10 +15,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     startupAction?.Invoke(build);
 
-                    build.PostConfigureHttpGatewayOptions();
+                    build.PostConfigureHttpGateway();
                     build.AddOrleans();
                 });
             });
+            builder.AddStartupTask<HttpGatewayStartup>();
             return builder;
         }
     }
